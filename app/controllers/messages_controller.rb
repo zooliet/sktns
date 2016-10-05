@@ -17,7 +17,8 @@ class MessagesController < ApplicationController
     respond_to do |format|
       if @message.save
         format.html { redirect_to messages_path, notice: '메시지가 정상적으로 생성되었습니다.' }
-        format.json { render :show, status: :created, location: @message }
+        # format.json { render :show, status: :created, location: @message }
+        format.json { render json: @message, status: :created, location: @message }
       else
         format.html { render :new }
         format.json { render json: @message.errors, status: :unprocessable_entity }

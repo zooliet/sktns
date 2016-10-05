@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SK TNS - Simple Message Controller</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div id="wrapper">
+      <%= render 'header' %>
+
+      <div id='container' class='container'>
+        <%= yield %>
+      </div>
+
+      <% flash.each do |name, msg| %>
+        <%= render 'flash', name: name, msg: msg %>
+      <% end %>
+
+      <%#= render 'flash', name: 'notice', msg: 'Flash Message Test' %>
+      <%#= render 'flash', name: 'warning', msg: 'Flash Message Test' %>
+    </div>
+  </body>
+</html>

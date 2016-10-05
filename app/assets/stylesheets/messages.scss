@@ -1,0 +1,50 @@
+// Place all the styles related to the messages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+div.messages {
+
+  div.message {
+    margin-bottom: 8px;
+    padding: 12px;
+    background: white;
+    border: 1px solid #ddd;
+    @include border-radius(4px);
+    @include transition(all .5s ease-in-out);
+
+    &:hover {
+      border: 1px solid steelblue;
+    }
+
+
+    span.status {
+      color: #333;
+      font-size: 14px;
+      line-height: 21px;
+    }
+
+    div.action {
+      margin-top: 4px;
+      span, a {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+div.new_message {
+  padding: 12px;
+  margin-bottom: 24px;
+  border: 1px solid #ddd;
+  @include border-radius(4px);
+
+  textarea {
+    resize: none;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 4px;
+    padding: 3px 6px;
+    font-size: 14px;
+  }
+}

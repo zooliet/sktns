@@ -1,0 +1,32 @@
+
+
+<div class="new_message hidden">
+  <div class="row">
+    <%= form_for(Message.new) do |f| %>
+    <div class="col-sm-12">
+      <%= f.label :status, 'New Message' %>
+      <%= f.text_area :status, rows: 4 %>
+    </div>
+    <div class="col-sm-12 text-center">
+      <%= f.submit 'Send', class: 'btn btn-success' %>
+      <%= link_to 'Cancel', '#', class: 'btn btn-default cancel' %>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="messages">
+  <% @messages.each do |message| %>
+    <div class="message">
+      <div>
+        <span class='status'><%= message.status.gsub(/\n/, "<br/>").html_safe %></span>
+      </div>
+      <div class='action'>
+        <em class='text-muted'><%= message.created_at.to_s(:long) %></em>
+        <!-- <a href="/" class='text-muted pull-right'></a> -->
+        <%= link_to "<i class='glyphicon glyphicon-remove'></i>".html_safe,  message,  method: :delete, class: 'text-muted pull-right' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+

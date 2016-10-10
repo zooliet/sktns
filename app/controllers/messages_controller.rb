@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
   end
 
   def show
-    @message = Message.first
+    @message = Message.last
     respond_to do |format|
       format.json { render json: @message }
     end

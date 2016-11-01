@@ -16,6 +16,14 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     respond_to do |format|
       if @message.save
+
+        if (counts = Message.count) > 100
+          n = counts - 100
+          ids = Message.order('created_at DESC').limit(n).pluck(:id)
+          Message.where(id: ids).delete_all
+        end
+
+
         format.html { redirect_to messages_path, notice: '메시지가 정상적으로 생성되었습니다.' }
         # format.json { render :show, status: :created, location: @message }
         format.json { render json: @message, status: :created, location: @message }

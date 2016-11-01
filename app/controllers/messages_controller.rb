@@ -35,8 +35,15 @@ class MessagesController < ApplicationController
   end
 
   def destroy
-    @message = Message.find(params[:id])
-    @message.destroy
+    if (counts = Message.count) > 100
+      n = counts - 100
+      ids = Message.order('created_at DESC').limit(n).pluck(:id)
+      Message.where(id: ids).delete_all
+    else
+      @message = Message.find(params[:id])
+      @message.destroy
+    end
+
     redirect_to messages_path, notice: '메시지가 정상적으로 삭제되었습니다.'
   end
 
